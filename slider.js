@@ -1,6 +1,7 @@
 import data from "./data.js";
 
-var CSS = {
+//style
+const CSS = {
   container: {
     width: "900px",
     height: "600px",
@@ -36,7 +37,7 @@ var CSS = {
   },
   slider: {
     position: "relative",
-    height: 400,
+    height: 350,
     background: "#fff",
     left: 0,
     width: "250%",
@@ -62,21 +63,21 @@ var CSS = {
   },
 };
 
-$("<div/>", { id: "container" }).css(CSS.container).appendTo("body");
-$("<h1>You might also like</h1>", { id: "header" })
+//Creating HTML element with jquery
+$("<div/>", { id: "container" }).css(CSS.container).appendTo("body"); //our container part
+$("<h1>You might also like</h1>", { id: "header" }) //header
   .css(CSS.header)
   .appendTo("#container");
-$("<div/>", { id: "card" }).css(CSS.card).appendTo("#container");
-$("<div/>", { id: "slider" }).css(CSS.slider).appendTo("#card");
-
-$("<button  id='prev'><</button>")
+$("<div/>", { id: "card" }).css(CSS.card).appendTo("#container"); //card
+$("<div/>", { id: "slider" }).css(CSS.slider).appendTo("#card"); //slider
+$("<button  id='prev'><</button>") //prev button
   .css($.extend(CSS.btn, CSS.prev))
   .appendTo("#container");
-
-$("<button id='next'>></button>")
+$("<button id='next'>></button>") //next button
   .css($.extend(CSS.btn, CSS.next))
   .appendTo("#container");
 
+//Here we put item into product-container
 for (let i = 0; i < data.length; i++) {
   $("<div/>", { class: `product-container${i}` })
     .css(CSS.productContainer)
@@ -94,9 +95,10 @@ for (let i = 0; i < data.length; i++) {
     .css(CSS.price)
     .appendTo(document.getElementsByClassName(`product-container${i}`));
 }
+
+//This is slider button function
 let x = 0;
 $("#next").click(function () {
-  console.log("clicked");
   x = x <= 125 ? x + 25 : 0;
   $("#slider").css("left", -x + "%");
 });
